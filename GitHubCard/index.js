@@ -5,9 +5,9 @@
 */
 import axios from "axios";
 
-axios.get(" https://api.github.com/users/izzymajors")
+axios.get(" https://api.github.com/users/JonathanMajors")
 .then(response => {
-  console.log(axios.get("https://api.github.com/users/izzymajors"));
+  console.log(axios.get("https://api.github.com/users/JonathanMajors"));
   userMaker(response.data);
 })
 .catch(error =>{
@@ -15,9 +15,9 @@ axios.get(" https://api.github.com/users/izzymajors")
 })
 
 axios.get(`https://api.github.com/users/izzymajors/followers`)
-.then(response =>{
+.then(res =>{
   followersArray.forEach(newUser => {
-    userMaker(newUser.response.data);
+    userMaker(newUser.res.data);
   })
 })
 .catch(error => {
