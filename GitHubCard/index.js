@@ -16,7 +16,7 @@ axios.get("https://api.github.com/users/izzymajors")
 
 axios.get(`https://api.github.com/users/izzymajors/followers`)
 .then(response =>{
-  followersArray.forEach(newUser => {
+  response.data.forEach(newUser => {
     userMaker(newUser.res.data);
   })
 })
@@ -34,6 +34,7 @@ function userMaker(data){
   const userUserName = document.createElement("p");
   const location = document.createElement("p");
   const profile = document.createElement("p");
+  const profileHref = document.createElement("a");
   const followers = document.createElement("p");
   const following = document.createElement("p");
   const bio = document.createElement("p");
@@ -71,6 +72,7 @@ function userMaker(data){
   return card;
 
 }
+console.log(userMaker);
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
