@@ -5,6 +5,7 @@
 */
 import axios from "axios";
 
+
 axios.get("https://api.github.com/users/izzymajors")
 .then(response => {
   console.log(axios.get("https://api.github.com/users/izzymajors"));
@@ -12,19 +13,34 @@ axios.get("https://api.github.com/users/izzymajors")
 })
 .catch(error =>{
   console.log(error);
+  
 })
 
-axios.get(`https://api.github.com/users/izzymajors/followers`)
+
+axios.get("https://api.github.com/users/izzymajors/followers")
 .then(response =>{
   response.data.forEach(newUser => {
-    userMaker(newUser.res.data);
+    userMaker(newUser.response.data);
+    console.log(userMaker);
+    entryPoint.append(userMaker);
   })
 })
 .catch(error => {
   console.log(error);
+  
 });
 
+axios.get("https://api.github.com/users/izzymajors")
+//.then((response =>{
+//const cards = response.data.map;
+// cards.forEach(card) =>{
+// const userCard = userMaker({ img: card});
+//})
 
+.catch()
+//const cards = document.querySelector(".cards");
+// document.querySelector(".cards")appendChild(card);
+ 
 //STEP2-3
 function userMaker(data){
   const card = document.createElement("div");
