@@ -5,9 +5,9 @@
 */
 import axios from "axios";
 
-axios.get(" https://api.github.com/users/JonathanMajors")
+axios.get("https://api.github.com/users/izzymajors")
 .then(response => {
-  console.log(axios.get("https://api.github.com/users/JonathanMajors"));
+  console.log(axios.get("https://api.github.com/users/izzymajors"));
   userMaker(response.data);
 })
 .catch(error =>{
@@ -15,7 +15,7 @@ axios.get(" https://api.github.com/users/JonathanMajors")
 })
 
 axios.get(`https://api.github.com/users/izzymajors/followers`)
-.then(res =>{
+.then(response =>{
   followersArray.forEach(newUser => {
     userMaker(newUser.res.data);
   })
@@ -23,6 +23,54 @@ axios.get(`https://api.github.com/users/izzymajors/followers`)
 .catch(error => {
   console.log(error);
 });
+
+
+//STEP2-3
+function userMaker(data){
+  const card = document.createElement("div");
+  const img = document.createElement("img");
+  const cardInfo = document.createElement("div");
+  const userName = document.createElement("h3");
+  const userUserName = document.createElement("p");
+  const location = document.createElement("p");
+  const profile = document.createElement("p");
+  const followers = document.createElement("p");
+  const following = document.createElement("p");
+  const bio = document.createElement("p");
+
+//parent child structure of html
+  card.appendChild(img);
+  card.appendChild(cardInfo);
+  card.appendChild(userName);
+  card.appendChild(userUserName);
+  card.appendChild(location);
+  profile.appendChild(profileHref);
+  card.appendChild(followers);
+  card.appendChild(following);
+  card.appendChild(bio);
+
+//html structure
+  card.classList.add("card");
+  card.classList.add("card-info");
+  card.classList.add("userName");
+  card.classList.add("userUserName");
+
+  //text content setup 
+  img.setAttribute("src" , data.userImagUrl);
+  userName.textContent = data.profileName;
+  userUserName.textContent = data.name;
+  location.textContent = `location: ${data.location}`;
+  profile.textContent = `profile: `;
+  profileHref.setAttribute("href", data.profileUrl);
+  followers.textContent = `followers: ${data.followers}`;
+  following.textContent = `following: ${data.following}`;
+  bio.textContent = `bio: ${data.bio}`;
+
+
+  //return card componet
+  return card;
+
+}
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -53,6 +101,8 @@ const followersArray = [];
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
+
+    
 
     <div class="card">
       <img src={image url of user} />
